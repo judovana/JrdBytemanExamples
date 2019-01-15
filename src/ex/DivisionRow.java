@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
+import java.util.function.Consumer;
 
 public class DivisionRow implements Runnable {
 
@@ -33,7 +34,12 @@ public class DivisionRow implements Runnable {
                 }
                 System.out.println("random keys divisible by [11-" + loopN + "]");
                 System.out.print(randomDivisibles.size()+": ");
-                randomDivisibles.forEach(d -> System.out.print(d.getKey() + "; "));
+                randomDivisibles.forEach(new Consumer<Result>() {
+                    @Override
+                    public void accept(Result t) {
+                        System.out.print(t.getKey() + "; ");
+                    }
+                });
                 System.out.println();
                 Thread.sleep(1000);
             } catch (Exception ex) {
