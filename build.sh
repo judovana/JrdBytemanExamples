@@ -37,6 +37,8 @@ pushd  cdist
     jar -cmf ../Manifest.txt  $name.jar *
   popd
 
+  rm -v Manifest.txt
+
 obfus="proguard"
 obfus_page="https://sourceforge.net/projects/proguard/"
 obfus_version="6.0.3"
