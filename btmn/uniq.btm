@@ -1,0 +1,24 @@
+# java -jar EthernalCrashes.jar  uniq
+
+#clenaat first entry
+RULE equals info
+CLASS ex.StringUniquier$MyString
+METHOD equals
+AT ENTRY
+IF true
+DO
+traceln("this.info "+$0.information);
+traceln("this.value "+$0.value);
+ENDRULE
+
+RULE equals info2
+CLASS ex.StringUniquier$MyString
+METHOD equals
+AFTER WRITE  $myString
+IF true
+DO
+traceln("myString.info "+$myString.information);
+traceln("myString.value "+$myString.value);
+ENDRULE
+
+

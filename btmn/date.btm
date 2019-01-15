@@ -1,0 +1,35 @@
+# java -jar EthernalCrashes.jar  date1
+
+RULE date entry
+CLASS ex.DatePrinter
+METHOD printDate
+AT ENTRY
+IF true
+DO
+traceln("entered printDate"+new java.util.Date())
+ENDRULE
+
+RULE date left
+CLASS ex.DatePrinter
+METHOD printDate
+AT EXIT
+IF true
+DO traceln("exited printDate")
+ENDRULE
+
+RULE date broken
+CLASS ex.DatePrinter
+METHOD printDate
+AT EXCEPTION EXIT
+IF true
+DO traceln("exception in printDate")
+ENDRULE
+
+RULE date fixed
+CLASS ex.DatePrinter
+# METHOD printDate(java.util.Date)
+METHOD printDate()
+AFTER WRITE  $d2
+IF true
+DO $d2=new java.util.Date()
+ENDRULE
