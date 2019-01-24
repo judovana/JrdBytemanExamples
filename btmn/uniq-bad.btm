@@ -1,0 +1,85 @@
+# java -jar obfuscated/EthernalCrashes.jar  uniq
+
+RULE clean list
+CLASS ex.k
+METHOD proceed
+AT ENTRY
+IF !flagged("just once")
+DO
+traceln("size "+$1.size());
+$1.clear();
+flag("just once")
+ENDRULE
+
+
+RULE fix toString
+CLASS ex.l
+METHOD toString
+AT EXIT
+IF true
+DO
+return $0.a+"-"+$0.b;
+ENDRULE
+
+RULE fix hash
+CLASS ex.l
+METHOD hashCode
+AT EXIT
+IF true
+DO
+return $0.a.hashCode()
+ENDRULE
+
+RULE fix equals
+CLASS ex.l
+METHOD equals
+AT EXIT
+BIND
+  a:ex.l=$0;
+  b:ex.l=$1;
+IF true
+DO
+return java.util.Objects.equals(a.a,b.a);
+ENDRULE
+
+
+RULE equals info
+CLASS ex.l
+METHOD equals
+AT ENTRY
+IF true
+DO
+traceln("this.info "+$0.b);
+traceln("this.value "+$0.a);
+ENDRULE
+
+RULE equals info2
+CLASS ex.l
+METHOD equals
+AFTER WRITE  $1
+BIND
+  a:ex.l=$0;
+  b:ex.l=$1;
+IF true
+DO
+traceln("other.info "+b.b);
+traceln("other.value "+b.a);
+ENDRULE
+
+RULE equals return 
+CLASS ex.l
+METHOD equals
+AT EXIT
+IF true
+DO
+traceln("equals return: "+$!);
+ENDRULE
+
+RULE hash return 
+CLASS ex.l
+METHOD hashCode
+AT EXIT
+IF true
+DO
+traceln("hash return: "+$!);
+ENDRULE

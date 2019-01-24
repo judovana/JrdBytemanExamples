@@ -4,8 +4,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Random;
+import zzlast.helpers.Proceedable;
 
-public class StringUniquier implements Runnable {
+public class StringUniquier implements Runnable, Proceedable{
 
     public static class MyString {
 
@@ -59,7 +60,7 @@ public class StringUniquier implements Runnable {
         }
     }
 
-    private void proceed(Set<MyString> ls, MyString myString) {
+    public void proceed(Set<MyString> ls, MyString myString) {
         ls.add(myString);
     }
 }

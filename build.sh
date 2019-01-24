@@ -63,6 +63,9 @@ obfus_jar_path="../$obfus_jar"
     -keep "public class zzlast.EthernalCrashes { 
       public static void main(java.lang.String[]); 
      }" \
+    -keep "public interface zzlast.helpers.Proceedable { 
+         *; 
+     }" \
     -keep "public class ex.NetworkCalc { 
         public int add(int , int );
         public int sub(int , int );
@@ -80,6 +83,9 @@ obfus_jar_path="../$obfus_jar"
     -overloadaggressively  \
     -keep "public class zzlast.EthernalCrashes { 
       public static void main(java.lang.String[]); 
+     }" \
+    -keep "public interface zzlast.helpers.Proceedable { 
+         *; 
      }" \
     -keep "public class ex.NetworkCalc { 
         public int add(int , int );
