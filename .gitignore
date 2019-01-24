@@ -24,3 +24,4 @@ hs_err_pid*
 
 # examples of varioous compilations
 cdist
+/build/

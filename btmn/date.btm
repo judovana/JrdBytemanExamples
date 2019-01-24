@@ -22,7 +22,7 @@ CLASS ex.DatePrinter
 METHOD printDate
 AT EXCEPTION EXIT
 IF true
-DO traceln("exception in printDate")
+DO $^.printStackTrace()
 ENDRULE
 
 RULE date fixed

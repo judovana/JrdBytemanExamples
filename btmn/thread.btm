@@ -1,0 +1,55 @@
+RULE display synchronization one
+CLASS RaceGameForResource
+METHOD moveListItem
+AT SYNCHRONIZE 1
+BIND name = Thread.currentThread().getName();
+     from = $1;
+IF true
+DO traceln(name + " synchronizing (1) on " + from);
+   # traceStack();
+ENDRULE
+
+RULE display synchronization two
+CLASS RaceGameForResource
+METHOD moveListItem
+AT SYNCHRONIZE 2
+BIND name = Thread.currentThread().getName();
+     to = $2;
+IF true
+DO traceln(name + " synchronizing (2) on " + to);
+   # traceStack();
+ENDRULE
+
+RULE display after synchronization one
+CLASS RaceGameForResource
+METHOD moveListItem
+AFTER SYNCHRONIZE 1
+BIND name = Thread.currentThread().getName();
+     from = $1;
+IF true
+DO traceln(name + " synchronized (1) on " + from);
+   # traceStack();
+ENDRULE
+
+RULE display after synchronization two
+CLASS RaceGameForResource
+METHOD moveListItem
+AFTER SYNCHRONIZE 2
+BIND name = Thread.currentThread().getName();
+     to = $2;
+IF true
+DO traceln(name + " synchronized (2) on " + to);
+   # traceStack();
+ENDRULE
+
+RULE display deadlock unsynchronize
+CLASS RaceGameForResource
+METHOD moveListItem
+AT EXIT
+BIND name = Thread.currentThread().getName();
+     from = $1;
+     to = $2;
+IF true
+DO traceln(name + " unsynchronized " + from + " and " + to);
+   # traceStack();
+ENDRULE

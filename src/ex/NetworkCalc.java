@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Method;
 import java.net.Socket;
-import java.net.URL;
-import java.net.URLConnection;
 
 /**
  *

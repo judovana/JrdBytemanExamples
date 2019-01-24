@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class StringUniquier implements Runnable {
 
-    class MyString {
+    public static class MyString {
 
         private final String value;
         private final String information;
@@ -49,12 +49,17 @@ public class StringUniquier implements Runnable {
         System.out.println("set of our two agents as they are appearing in field, with they current doings:");
         while (true) {
             try {
-                setOfString.add(new MyString(ss[r.nextInt(2)], String.valueOf(r.nextInt(5))));
-                System.out.println(setOfString);
+                Set<MyString> ls = setOfString;
+                proceed(ls, new MyString(ss[r.nextInt(2)], String.valueOf(r.nextInt(5))));
+                System.out.println(ls);
                 Thread.sleep(1000);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
+    }
+
+    private void proceed(Set<MyString> ls, MyString myString) {
+        ls.add(myString);
     }
 }

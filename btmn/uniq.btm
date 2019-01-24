@@ -1,6 +1,48 @@
-# java -jar EthernalCrashes.jar  uniq
+# java -jar obfuscated/EthernalCrashes.jar  uniq
 
-#clenaat first entry
+RULE clean list
+CLASS ex.StringUniquier
+METHOD proceed
+AT ENTRY
+IF !flagged("just once")
+DO
+traceln("size "+$ls.size());
+$ls.clear();
+flag("just once")
+ENDRULE
+
+
+RULE fix toString
+CLASS ex.StringUniquier$MyString
+METHOD toString
+AT EXIT
+IF true
+DO
+return $0.value+"-"+$0.information;
+ENDRULE
+
+RULE fix hash
+CLASS ex.StringUniquier$MyString
+METHOD hashCode
+AT EXIT
+IF true
+DO
+return $0.value.hashCode()
+ENDRULE
+
+RULE fix equals
+CLASS ex.StringUniquier$MyString
+METHOD equals
+AT EXIT
+BIND
+  a:ex.StringUniquier$MyString=$0;
+  b:ex.StringUniquier$MyString=$1;
+IF true
+DO
+return java.util.Objects.equals(a.value,b.value);
+ENDRULE
+
+
 RULE equals info
 CLASS ex.StringUniquier$MyString
 METHOD equals
@@ -21,4 +63,20 @@ traceln("myString.info "+$myString.information);
 traceln("myString.value "+$myString.value);
 ENDRULE
 
+RULE equals return 
+CLASS ex.StringUniquier$MyString
+METHOD equals
+AT EXIT
+IF true
+DO
+traceln("equals return: "+$!);
+ENDRULE
 
+RULE hash return 
+CLASS ex.StringUniquier$MyString
+METHOD hashCode
+AT EXIT
+IF true
+DO
+traceln("hash return: "+$!);
+ENDRULE

@@ -1,5 +1,6 @@
 package ex;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,9 +9,18 @@ import java.util.function.Consumer;
 
 public class RaceGameForResource implements Runnable {
 
-    private static AtomicInteger al = new AtomicInteger(0);
+    private static final AtomicInteger al = new AtomicInteger(0);
 
+    @Override
     public void run() {
+        try {
+            runImpl();
+        } catch (InterruptedException | IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void runImpl() throws InterruptedException, IOException {
         List<Integer> list1 = new ArrayList<>(Arrays.asList(2, 4, 6, 8, 10));
         List<Integer> list2 = new ArrayList<>(Arrays.asList(1, 3, 5, 7, 9));
 
@@ -30,8 +40,11 @@ public class RaceGameForResource implements Runnable {
                 }
             }
         });
-
+        System.out.println("press enter to start game");
+        System.in.read();
         thread1.start();
+        Thread.sleep(20);
+        System.out.println("Race is up!");
         thread2.start();
     }
 
