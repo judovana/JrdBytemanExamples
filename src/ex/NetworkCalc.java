@@ -1,10 +1,11 @@
-
 package ex;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
 
@@ -32,23 +33,27 @@ public class NetworkCalc implements Runnable {
                         new InputStreamReader(clientSocket.getInputStream(), "utf-8"));
                 out.write("op\n");
                 out.flush();
-                String op = in.readLine();
+                String op = readPartOfRemoteOrder(in);
                 out.write("dig\n");
                 out.flush();
-                String d1 = in.readLine();
+                String d1 = readPartOfRemoteOrder(in);
                 out.write("dig\n");
                 out.flush();
-                String d2 = in.readLine();
+                String d2 = readPartOfRemoteOrder(in);
                 out.close();
                 in.close();
-                //System.out.println(op + " " + d1 + " " + d2);
-                Method m = this.getClass().getDeclaredMethod(op, int.class, int.class);
-                Object result = m.invoke(this, Integer.valueOf(d1), Integer.valueOf(d2));
-                Integer r = (Integer) result;
+                callByRemoteOrder(op, d1, d2);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
+    }
+
+    private void callByRemoteOrder(String op, String d1, String d2) throws InvocationTargetException, IllegalAccessException, SecurityException, NoSuchMethodException, IllegalArgumentException {
+        //System.out.println(op + " " + d1 + " " + d2);
+        Method m = this.getClass().getDeclaredMethod(op, int.class, int.class);
+        Object result = m.invoke(this, Integer.valueOf(d1), Integer.valueOf(d2));
+        Integer r = (Integer) result;
     }
 
     public int add(int a, int b) {
@@ -73,6 +78,10 @@ public class NetworkCalc implements Runnable {
         int r = a / b;
         System.out.println(a + " / " + b + " = " + r);
         return r;
+    }
+
+    private String readPartOfRemoteOrder(BufferedReader in) throws IOException {
+        return in.readLine();
     }
 
 }

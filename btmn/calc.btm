@@ -1,0 +1,52 @@
+# java -jar nodebug/EthernalCrashes.jar  math
+
+RULE wrong method call
+CLASS ex.NetworkCalc
+METHOD readPartOfRemoteOrder
+AFTER INVOKE readLine 
+BIND
+ r:String=$!;
+IF r.equals("mult")
+DO
+return "mul";
+ENDRULE
+
+
+
+RULE div by zero
+CLASS ex.NetworkCalc
+METHOD div
+AT EXCEPTION EXIT
+IF true
+DO
+System.out.println(String.valueOf($1)+" / "+String.valueOf($2)+" = N/A");
+return null;
+ENDRULE
+
+#RULE fix sub
+#CLASS ex.NetworkCalc
+#METHOD sub
+#AT ENTRY
+#IF true
+#DO
+#$2=-$2
+#ENDRULE
+
+#RULE fix sub print
+#CLASS ex.NetworkCalc
+#METHOD sub
+#AT INVOKE println 
+#IF true
+#DO
+#System.out.println(String.valueOf($1)+" - "+String.valueOf(-$2)+" = ?");
+#ENDRULE
+
+RULE fix sub print
+CLASS ex.NetworkCalc
+METHOD sub
+AT READ $2 ALL 
+IF true
+DO
+$2=-$2
+ENDRULE
+
