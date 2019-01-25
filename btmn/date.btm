@@ -1,4 +1,4 @@
-# java -jar EthernalCrashes.jar  date1
+# java -jar cdist/fulldebugBuild/EthernalCrashes.jar date1
 
 RULE date entry
 CLASS ex.DatePrinter

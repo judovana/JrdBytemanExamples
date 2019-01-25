@@ -1,4 +1,4 @@
-# java -jar nodebug/EthernalCrashes.jar  math
+#  java -jar cdist/nodebugBuild/EthernalCrashes.jar  math
 
 RULE wrong method call
 CLASS ex.NetworkCalc

@@ -1,4 +1,5 @@
-# java -jar obfuscated/EthernalCrashes.jar  uniq
+# java -jar cdist/fulldebugBuild/EthernalCrashes.jar uniq
+
 
 RULE clean list
 CLASS ex.StringUniquier

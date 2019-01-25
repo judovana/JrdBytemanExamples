@@ -1,4 +1,4 @@
-# java -jar obfuscated/EthernalCrashes.jar  uniq
+# java -jar cdist/fulldebugObfuscated/EthernalCrashes.jar uniq
 
 RULE clean list
 CLASS ex.k

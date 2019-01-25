@@ -25,15 +25,15 @@ pushd  cdist
 
   classes=`find ../src -type f`
 
-  mkdir    niceBuild
-  javac -d niceBuild -g:lines,source,vars $classes
-  pushd    niceBuild
+  mkdir    fulldebugBuild
+  javac -d fulldebugBuild -g:lines,source,vars $classes
+  pushd    fulldebugBuild
     jar -cmf ../Manifest.txt $name.jar *
   popd
 
-  mkdir    badBuild
-  javac -d badBuild -g:none $classes
-  pushd    badBuild
+  mkdir    nodebugBuild
+  javac -d nodebugBuild -g:none $classes
+  pushd    nodebugBuild
     jar -cmf ../Manifest.txt  $name.jar *
   popd
 
@@ -52,12 +52,12 @@ obfus_jar_path="../$obfus_jar"
      rm -rvf $obfus$obfus_version
   fi
 
-  mkdir   obfuscatedNiceBuild
+  mkdir   fulldebugObfuscated
   java -jar $obfus_jar_path \
-    -injars       niceBuild/$name.jar \
-    -outjars      obfuscatedNiceBuild/$name.jar \
+    -injars       fulldebugBuild/$name.jar \
+    -outjars      fulldebugObfuscated/$name.jar \
     -libraryjars  $( dirname $( dirname $(readlink -f $(which java))))/lib/rt.jar \
-    -printmapping obfuscatedNiceBuild/$name.map  \
+    -printmapping fulldebugObfuscated/$name.map  \
     -optimizationpasses 3  \
     -overloadaggressively  \
     -keep "public class zzlast.EthernalCrashes { 
@@ -73,12 +73,12 @@ obfus_jar_path="../$obfus_jar"
         public int div(int , int );
      }"
 
-  mkdir   obfuscatedBadBuild
+  mkdir   nodebugObfuscated
     java -jar $obfus_jar_path \
-    -injars       badBuild/$name.jar \
-    -outjars      obfuscatedBadBuild/$name.jar \
+    -injars       nodebugBuild/$name.jar \
+    -outjars      nodebugObfuscated/$name.jar \
     -libraryjars  $( dirname $( dirname $(readlink -f $(which java))))/lib/rt.jar \
-    -printmapping obfuscatedBadBuild/$name.map  \
+    -printmapping nodebugObfuscated/$name.map  \
     -optimizationpasses 3  \
     -overloadaggressively  \
     -keep "public class zzlast.EthernalCrashes { 
