@@ -1,0 +1,33 @@
+# java -jar EthernalCrashes.jar  row
+
+#bminstall -b  -Dorg.jboss.byteman.transform.all `java-runtime-decompiler  -listjvms | grep Ethernal | sed "s/ .*//"`  
+#RULE cheat random
+#CLASS java.util.Random
+#METHOD nextInt(int)
+#AT ENTRY
+#IF $1 <= 0
+#DO
+#return 0;
+#ENDRULE
+#kills the list of course
+
+RULE exit on empty list
+CLASS ex.DivisionRow
+METHOD addObsucreNumbers
+AFTER WRITE  $results
+BIND
+ r:java.util.List=$results
+IF r.size() == 0
+DO return
+ENDRULE
+
+#jmap -histo <pid>
+
+RULE redeclare treemap
+CLASS ex.DivisionRow
+METHOD query
+AFTER WRITE  $queryResult
+IF true
+DO $queryResult=new java.util.HashMap();
+ENDRULE
+

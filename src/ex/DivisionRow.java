@@ -14,7 +14,7 @@ public class DivisionRow implements Runnable {
 
     private static byte[] getLoad(int v) {
         //we need a lot of ram here; Each entry will eat a 5 kilos now
-        byte[] b = new byte[5*1024];
+        byte[] b = new byte[5 * 1024];
         return b;
     }
 
@@ -28,12 +28,11 @@ public class DivisionRow implements Runnable {
             try {
                 int loopN = N >> 2;
                 for (int i = 11; i <= loopN; i++) {
-                    List<Result> results = obscureQueryNumbersDivisibleBy(i);
-                    randomDivisibles.add(results.get(r.nextInt(results.size())));
+                    addObsucreNumbers(i, randomDivisibles);
 
                 }
                 System.out.println("random keys divisible by [11-" + loopN + "]");
-                System.out.print(randomDivisibles.size()+": ");
+                System.out.print(randomDivisibles.size() + ": ");
                 randomDivisibles.forEach(new Consumer<Result>() {
                     @Override
                     public void accept(Result t) {
@@ -49,6 +48,11 @@ public class DivisionRow implements Runnable {
                 randomDivisibles = new ArrayList<>();
             }
         }
+    }
+
+    private void addObsucreNumbers(int i, List<Result> randomDivisibles) throws InterruptedException {
+        List<Result> results = obscureQueryNumbersDivisibleBy(i);
+        randomDivisibles.add(results.get(r.nextInt(results.size())));
     }
 
     private static List<Result> obscureQueryNumbersDivisibleBy(int divisibleBy) throws InterruptedException {
