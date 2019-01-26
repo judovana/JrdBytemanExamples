@@ -8,7 +8,7 @@ main resources:
 
 workshop reuirements
  * dnf install java-runtime-decompiler
- * tar -xf cdist.tar.xz
+ * tar -xf cdist.tar.xz (download from releases)
 
 Content
  * jrd introduction - https://github.com/pmikova/Java-Runtime-Decompiler/
@@ -34,6 +34,13 @@ Content
    * great for apps without debuginfo and/or obfuscated
      * ITW case
  * http://downloads.jboss.org/byteman/4.0.5/byteman-programmers-guide.html#location-specifiers + http://downloads.jboss.org/byteman/4.0.5/byteman-programmers-guide.html#rule-expressions
+ 
+ # examples
+ Each btms/\*.btm file have in header command (eg. jaav -jar EtehrnalCrashes.jar date1) which launces exemplar case.
+ You can then connect to the running example, study it and fixit. Each .btm file contains also rules which ccen be injected inside and which add additional stdouts or traces. As bonus, where possible, there are rules whch can fix the bugs in th running applications on the fly. 
+ 
+ I would recommend to bmsubmit and -u rules one by one, and then in combinations, otherwise it will be hard for you to sctudy individual rules.
+ 
  * date
    * full debuginfo
    * simple info obtaining
