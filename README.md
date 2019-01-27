@@ -7,8 +7,8 @@ main resources:
  * https://developer.jboss.org/wiki/ABytemanTutorial#top
 
 workshop reuirements
- * dnf install java-runtime-decompiler
- * tar -xf cdist.tar.xz (download from releases)
+ * dnf install java-runtime-decompiler byteman
+ * tar -xf cdist.tar.xz (download from releases of this project)
 
 Content
  * jrd introduction - https://github.com/pmikova/Java-Runtime-Decompiler/
