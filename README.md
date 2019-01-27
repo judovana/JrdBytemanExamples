@@ -25,9 +25,12 @@ Content
    * bminstall \`java-runtime-decompiler  -listjvms | grep Ethernal | sed "s/ .*//"\`
    * bmsubmit file
      * no error reporting!
+     * to vverify rules ru bmcheck
+   * bmcheck, useless without -cp :(
+     * worthy to run  before every submit
    * bmsubmit -u file
    * bmsubmit can redefine rules, but be aware once you remove rule form file. So better to -u them always
-   * bm check, useless without -cp :(
+  
  * jrd + byteman
    * no overwhelming substitution
    * good addition
