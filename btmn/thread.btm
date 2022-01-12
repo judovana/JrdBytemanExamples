@@ -1,3 +1,5 @@
+# java  -Djdk.attach.allowAttachSelf=true  -jar cdist/nodebugBuild/EthernalCrashes.jar  dead
+
 RULE display synchronization one
 CLASS RaceGameForResource
 METHOD moveListItem
