@@ -1,4 +1,4 @@
-#  java -jar cdist/nodebugBuild/EthernalCrashes.jar  math
+#  java -Djdk.attach.allowAttachSelf=true -jar cdist/nodebugBuild/EthernalCrashes.jar  math
 
 RULE wrong method call
 CLASS ex.NetworkCalc

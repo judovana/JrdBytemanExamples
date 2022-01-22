@@ -1,4 +1,4 @@
-# java -jar EthernalCrashes.jar  row
+# java -Djdk.attach.allowAttachSelf=true -jar EthernalCrashes.jar  row
 
 #bminstall -b  -Dorg.jboss.byteman.transform.all `java-runtime-decompiler  -listjvms | grep Ethernal | sed "s/ .*//"`  
 #RULE cheat random

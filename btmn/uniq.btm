@@ -1,4 +1,4 @@
-# java -jar cdist/fulldebugBuild/EthernalCrashes.jar uniq
+# java -Djdk.attach.allowAttachSelf=true -jar cdist/fulldebugBuild/EthernalCrashes.jar uniq
 
 
 RULE clean list

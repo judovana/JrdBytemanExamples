@@ -1,4 +1,4 @@
-# java -jar cdist/fulldebugBuild/EthernalCrashes.jar date1
+# java -Djdk.attach.allowAttachSelf=true -jar cdist/fulldebugBuild/EthernalCrashes.jar date1
 
 RULE date entry
 CLASS ex.DatePrinter
