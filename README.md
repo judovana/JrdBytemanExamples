@@ -12,9 +12,9 @@ workshop reuirements
 
 Content
  * jrd introduction - https://github.com/pmikova/Java-Runtime-Decompiler/
-   * gui, tui, javap
-   * fernflower x procyon
-   * backward compilation, search...
+   * gui, tui, javap, jasm, byteman
+   * fernflower x procyon x asm x byteman
+   * back-compilation, search...
  * byteman limitations
    * for variable rules, depends on debug table; still have parameters access
    * method must be reloaded before actions takes effect, so no direct effect to while(true){}, but ok with any subcalls (unless it got inlined)
@@ -61,3 +61,6 @@ Content
  * row
    * misleading radnom failure
    * nasty memory leak
+ * server
+   *  bad impl
+   *  replace by custom
