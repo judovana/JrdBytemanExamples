@@ -11,7 +11,7 @@ workshop reuirements
  * tar -xf cdist.tar.xz (download from releases of this project)
 
 Content
- * jrd introduction - https://github.com/pmikova/Java-Runtime-Decompiler/
+ * jrd introduction - https://github.com/judovana/Java-Runtime-Decompiler/
    * gui, tui, javap, jasm, byteman
    * fernflower x procyon x asm x byteman
    * back-compilation, search...
