@@ -24,4 +24,6 @@ hs_err_pid*
 
 # examples of varioous compilations
 cdist
+dist
+proguard-7.1.0-beta5/
 /build/
