@@ -11,6 +11,7 @@ import ex.ExceptionThrower;
 import ex.NetworkCalc;
 import ex.RaceGameForResource;
 import ex.StringUniquier;
+import es.*;
 import java.io.IOException;
 import java.util.Set;
 import zzlast.helpers.Proceedable;
@@ -26,7 +27,7 @@ public class EthernalCrashes implements Proceedable {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        String[] known = new String[]{"date1", "okl", "math", "uniq", "row", "dead"};
+        String[] known = new String[]{"date1", "okl", "math", "uniq", "row", "dead", "server"};
         if (args.length == 0) {
             for (String s : known) {
                 System.out.print(s + " ");
@@ -43,13 +44,14 @@ public class EthernalCrashes implements Proceedable {
                     NetworkCalc client = new NetworkCalc(server.getServerSocket());
                     new Thread(server).start();
                     new Thread(client).start();
-
                 } else if (known[3].equals(s)) {
                     new Thread(new StringUniquier()).start();
                 } else if (known[4].equals(s)) {
                     new Thread(new DivisionRow()).start();
                 } else if (known[5].equals(s)) {
                     new Thread(new RaceGameForResource()).start();
+                } else if (known[6].equals(s)) {
+                    new Thread(new RunIServer()).start();
                 } else {
                     new EthernalCrashes().proceed(null, null);
                 }
