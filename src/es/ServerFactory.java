@@ -3,7 +3,7 @@ package es;
 public class ServerFactory {
 
    public static IServer createServer() {
-     return new ServerImpl();
+     return new ServerImplNw();
    }
 
 }
