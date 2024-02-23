@@ -1,4 +1,4 @@
-# runtime hotfix game
+# runtime  h-o-t-f-i-x  game
 If you build this repository - `build.sh`, currently only **jdk11** as build jdk is suported due to obfuscator of proguard being very fragile by build jdk - it will create four directories in `cdist` for you:
 ```
 easy: fulldebugBuild
