@@ -30,7 +30,7 @@ where id is one of:
  * uniq - obviusly malfuncting, tell why and fix
  * row - this is  memory leak, fix (before time run out. Note, you can get more time by extending heap O:)
  * dead - this should be deadlock, fix (before deadlock happens) (afaik requires init of classes). IIRC, `synchronization`  keyword can not be changed in runtimee. In runtime, you can workaround it. But real fix must be done in the filesystem (in jar itself) before start. JRD can do this too. In this case, byteman can not fix (iirc) but can provide all necessary info to pinpoint the issue
- * server - this is similar to date, okl and math. The assigmet is extended: Your servrer is printing out messages, and it should be printinf stories. However the whole impl is to complex, you have to **add* new implementation of IServer, and replace current implementation creation by creation of your new implementation (boith jrd and byteman supports upload of new classes)
+ * server - this is similar to date, okl and math. The assigmet is extended: Your servrer is printing out messages, and it should be printinf stories. However the whole impl is to complex, you have to **add* new implementation of IServer, and replace current implementation creation by creation of your new implementation (boith jrd and byteman supports upload of new classes, eg: https://github.com/judovana/java-runtime-decompiler/blob/brnoCzJug022024/jrd.markdown.patch)
 
 # Original useless readme
 Examples to usage of Java-runtime-decompiler and byteman
